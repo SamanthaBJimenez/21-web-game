@@ -58,14 +58,18 @@ document.addEventListener("DOMContentLoaded", () => {
             compDiv.appendChild(compCardsImg);
             logCompScore(compCards.data.cards[i].value);
         }
-        if(scoreNum > 21) {
-            let busted = document.createElement("h1");
-            busted.innerText = "Busted! -- The computers score is: " + scoreNum;
-            compScore.appendChild(busted);
-        }
         let compUpdate = document.createElement("p");
         compUpdate.innerText = "The computers score is: " + scoreNum;
         compScore.appendChild(compUpdate);
+
+        let winner = document.createElement("h1");
+        if(scoreNum > 21 || score > scoreNum) {
+            winner.innerText = "You Win!";
+            compScore.appendChild(winner);
+        } else {
+            winner.innerText = "You Lose!"
+            compScore.appendChild(winner);
+        }
     })
 
     const logScore = (value) => {
@@ -88,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             scoreDiv.innerText = "Your score is: " + score;
         }
-        // debugger;
     }
 
     const logCompScore = (value) => {
@@ -102,15 +105,5 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             scoreNum += Number(value);
         }
-
-        // if(scoreNum > 21) {
-        //     let busted = document.createElement("h1");
-        //     busted.innerText = "Busted! -- The computers score is: " + scoreNum;
-        //     compScore.appendChild(busted);
-        // }
-        // let compUpdate = document.createElement("p");
-        // compUpdate.innerText = "The computers score is: " + scoreNum;
-        // compScore.appendChild(compUpdate);
-        // debugger;
     }
 })
