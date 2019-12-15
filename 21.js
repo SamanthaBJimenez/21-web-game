@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let startGameDiv = document.querySelector("#startGame");
     startGameDiv.appendChild(startGameBtn);
 
+    let compDiv = document.querySelector("#compDiv");
+
     let score = 0;
+    let scoreNum = 0;
     startGameBtn.addEventListener("click", async () => {
         try {
             let res1 = await axios.get("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1");
@@ -47,8 +50,22 @@ document.addEventListener("DOMContentLoaded", () => {
         logScore(newCard.data.cards[0].value);
     })
 
-    stay.addEventListener("click", () => {
-
+    stay.addEventListener("click", async () => {
+        let compCards = await axios.get(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=3`)
+        for(let i = 0; i < compCards.data.cards.length; i++) {
+            let compCardsImg = document.createElement("img");
+            compCardsImg.src = compCards.data.cards[i].image;
+            compDiv.appendChild(compCardsImg);
+            logCompScore(compCards.data.cards[i].value);
+        }
+        if(scoreNum > 21) {
+            let busted = document.createElement("h1");
+            busted.innerText = "Busted! -- The computers score is: " + scoreNum;
+            compScore.appendChild(busted);
+        }
+        let compUpdate = document.createElement("p");
+        compUpdate.innerText = "The computers score is: " + scoreNum;
+        compScore.appendChild(compUpdate);
     })
 
     const logScore = (value) => {
@@ -57,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             score += 10;
         } else if(value === "ACE" && score + 11 > 21) {
             score += 1;
-        } else if(value === "ACE" && score + 11 < 21) {
+        } else if(value === "ACE" && score + 11 <= 21) {
             score += 11;
         } else {
             score += Number(value);
@@ -71,6 +88,29 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             scoreDiv.innerText = "Your score is: " + score;
         }
+        // debugger;
+    }
+
+    const logCompScore = (value) => {
+        let compScore = document.querySelector("#compScore");
+        if(value === "KING" || value === "QUEEN" || value === "JACK") {
+            scoreNum += 10;
+        } else if(value === "ACE" && scoreNum + 11 > 21) {
+            scoreNum += 1;
+        } else if(value === "ACE" && scoreNum + 11 <= 21) {
+            scoreNum += 11;
+        } else {
+            scoreNum += Number(value);
+        }
+
+        // if(scoreNum > 21) {
+        //     let busted = document.createElement("h1");
+        //     busted.innerText = "Busted! -- The computers score is: " + scoreNum;
+        //     compScore.appendChild(busted);
+        // }
+        // let compUpdate = document.createElement("p");
+        // compUpdate.innerText = "The computers score is: " + scoreNum;
+        // compScore.appendChild(compUpdate);
         // debugger;
     }
 })
