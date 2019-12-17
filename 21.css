@@ -1,0 +1,106 @@
+.split {
+    /* display: ; */
+    /* height: 100%; */
+    /* width: 50%; */
+    /* position: fixed; */
+    /* position: float; */
+    /* z-index: 1; */
+    /* top: 0; */
+    /* overflow-x: hidden; */
+    /* padding-top: 20px; */
+
+    /* height: 100%; */
+    width: 30%;
+    position: fixed;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.left {
+    position: relative;
+    float: left;
+    width: 50%;
+    /* display: grid; */
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.right {
+    position: relative;
+    float: right;
+    width: 50%;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* text-align: center;     */
+    margin: 0;
+    padding: 0;
+    /* display: grid; */
+    white-space: nowrap;
+}
+
+/* #score {
+    position: relative;
+    float: left;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    text-align: center;
+} */
+
+#allScores {
+    /* position: absolute; */
+    display: block;
+    float: left;
+    width: auto;
+    /* margin: 50% auto; */
+    /* padding: 10px; */
+    white-space: nowrap;
+    text-align: center;
+    background-color: grey;
+    opacity: 0.5;
+    border-radius: 25px;
+    /* justify-content: center; */
+    margin-left: 45%;
+}
+
+#buttons {
+    /* display: block; */
+
+    /* display: flex; */
+    /* flex-direction: column-reverse; */
+    /* position: relative; */
+    /* text-align: center; */
+    /* margin: 0;
+    padding: 0; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* bottom: 0; */
+    /* align-items: center; */
+
+    display: block;
+    /* position: absolute; */
+    bottom: auto;
+    width: 100%;
+    height: auto; 
+    padding: 11px 0;
+    float: left;
+}
+
+img {
+    white-space: nowrap;
+    background-size: contain;
+    /* height: 100vh; */
+    background-repeat: no-repeat;
+}
+
+body {
+    background-image: url("./assets/casino-dices-1313008.jpg");
+    background-size: cover;
+    height: 100vh;
+    background-repeat: no-repeat;
+}

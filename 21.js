@@ -84,14 +84,18 @@ document.addEventListener("DOMContentLoaded", () => {
             score += Number(value);
         }
 
+        let busted = document.createElement("h1");
         if(Number(score) > 21) {
             html.innerText = ""
-            let busted = document.createElement("h1");
             busted.innerText = "Busted!";
-            html.appendChild(busted);
+        } else if(Number(score) === 21) {
+            busted.innerText = "You Win!"
         } else {
             scoreDiv.innerText = "Your score is: " + score;
+            // busted.innerText = "Your score is: " + score;
         }
+        html.appendChild(busted);
+
     }
 
     const logCompScore = (value) => {
